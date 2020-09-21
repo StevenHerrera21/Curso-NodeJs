@@ -13,7 +13,7 @@ var tokenRouter = require('./routes/token')
 var bicicletasRouter = require('./routes/bicicletas')
 var bicicletasAPIRouter = require('./routes/api/bicicletas')
 var usuariosAPIRouter = require('./routes/api/usuarios');
-var authAPIRouter= require('/routes/api/auth')
+var authAPIRouter= require('./routes/api/auth')
 
 const Usuario= require('./models/usuario'); 
 const Token= require('./models/token');
@@ -31,8 +31,11 @@ app.use(session({
 }));
 
 var mongoose = require('mongoose');
-var mongoBD = 'mongodb://localhot/red_bicicletas';
-moongoose.connect(mongoDB, {useNewUrlParser: true});
+//var mongoBD = 'mongodb://localhot/red_bicicletas';
+//mongodb+srv://admin:<password>@red-bicicletas.tjeae.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+var mongoDB = 'mongodb+srv://admin:h2XJ1LS97SL5w7TF@red-bicicletas.tjeae.mongodb.net/test?retryWrites=true&w=majority';
+mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '))
@@ -49,7 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('login', function(req, res){
+app.get('/login', function(req, res){
   res.render('session/login');
 });
 
@@ -122,7 +125,7 @@ app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/token', tokenRouter);
 app.use('/bicicletas', loggedIn, bicicletasRouter);
-app.use('api/auth', authAPIRouter)
+app.use('/api/auth', authAPIRouter)
 app.use('/api/bicicletas', validarUsuario,  bicicletasAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
 

@@ -46,7 +46,7 @@ module.exports = {
         }
         
         Usuario.create({nombre: req.body.nombre, email: req.body.email, password:req.body.password}, ( err, newUsuario ) => {
-            
+        console.log("entra")    
             if(err) {
                 console.log(err);
                 res.render('usuarios/create',{errors: err.errors, usuario: new Usuario({nombre:req.body.nombre, email:req.body.email})});

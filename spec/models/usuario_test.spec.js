@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
-let Usuario = require('../../models/usuariomodel');
-let Bicicleta = require('../../models/bicicletamodel');
-let Reserva = require('../../models/reservamodel');
+let Usuario = require('../../models/usuario');
+let Bicicleta = require('../../models/bicicleta');
+let Reserva = require('../../models/reserva');
 
 
 describe('Testing Usuarios', () => {
@@ -21,7 +21,7 @@ describe('Testing Usuarios', () => {
             if (err) console.log(err);
             Usuario.deleteMany({}, function (err, success) {
                 if (err) console.log(err);
-                Bicycle.deleteMany({}, function (err, success) {
+                Bicicleta.deleteMany({}, function (err, success) {
                     if (err) console.log(err);
                     done();
                 });

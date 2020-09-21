@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 var moment = require('moment');
 
 var reservaSchema = new Schema({
@@ -9,7 +9,7 @@ var reservaSchema = new Schema({
     usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'Usuario'}
 });
 
-Reserva.methods.reservedDays = function () {
+reservaSchema.methods.diasDeReserva = function () {
     return moment(this.hasta).diff(moment(this.desde), 'days') + 1;
 }
 
