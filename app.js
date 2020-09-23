@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -34,7 +35,7 @@ var mongoose = require('mongoose');
 //var mongoBD = 'mongodb://localhot/red_bicicletas';
 //mongodb+srv://admin:<password>@red-bicicletas.tjeae.mongodb.net/<dbname>?retryWrites=true&w=majority
 
-var mongoDB = 'mongodb+srv://admin:h2XJ1LS97SL5w7TF@red-bicicletas.tjeae.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGO_URI;
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
